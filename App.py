@@ -1,26 +1,29 @@
 import streamlit as st
+import pages
 # import AshesiLeague as AL
 
 
 if __name__ == "__main__":
-    st.write("Hello Streamlit")
-    st.success("App runs successfully. It's now upto you to be creative Developer🤭")
+    html_temp = """
+    <div style="background-color:tomato;padding:10px">
+    <h2 style="color:white;text-align:center;">Ashesi Football Platform</h2>
+    </div>
+    """
+    st.markdown(html_temp,unsafe_allow_html=True)
     
     st.sidebar.button("Home")
     st.sidebar.button("Teams")
     st.sidebar.button("Groups")
+
+    pages = {
+        "Your account": [
+            st.Page("pages/home.py", title="Home"),
+            st.Page("pages/teams.py", title="Teams"),
+        ],
+    }
+
+    pg = st.navigation(pages)
+    pg.run()
+
+
     
-
-
-def page2():
-    st.title("Second page")
-
-def page1():
-    st.title("First Page")
-
-pg = st.navigation([
-    st.Page(page1, title="First page", icon="🔥"),
-    st.Page(page2, title="Second page", icon=":material/favorite:"),
-])
-if page1:
-    st.switch_page("Pages/Teams.py")
